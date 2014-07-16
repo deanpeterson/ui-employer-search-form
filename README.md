@@ -6,7 +6,7 @@ This component attaches accordion style forms to the employer-search component: 
 
 ##Installation
 
-1. Include ui-employer-searchform:X.X.X in your bower.json file
+1. Include ui-employer-search-form:X.X.X in your bower.json file
 2. Type bower install to pull it into your bower_components library
 
 ##Use
