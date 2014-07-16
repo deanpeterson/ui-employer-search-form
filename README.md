@@ -18,9 +18,9 @@ This component attaches accordion style forms to the employer-search component: 
 
 2. Your angularjs controller should look something like this:
    `angular.module('modularApplyForBenefitsApp')
-   .controller('MainCtrl', function ($scope,**employerSearchFactory**) {
-           **employerSearchFactory.restore();**
-           **$scope.employers = employerSearchFactory.employers;**
+   .controller('MainCtrl', function ($scope,employerSearchFactory) {
+           employerSearchFactory.restore();
+           $scope.employers = employerSearchFactory.employers;
      });`
      
 3. Drop in the directive where you like, replacing the attributes with your values
