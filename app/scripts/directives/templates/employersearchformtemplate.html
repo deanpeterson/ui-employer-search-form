@@ -1,0 +1,182 @@
+<div employer-search minimum-input-length="{{minimumInputLength}}" maximum-selection-size="{{maximumSelectionSize}}"
+     employer-search-service-url="{{employerSearchServiceUrl}}" template-url="{{employerSearchTemplateUrl}}"></div>
+<br/>
+<accordion close-others="oneAtATime">
+    <accordion-group
+            heading="{{employer.name}}"
+            ng-repeat="employer in employers">
+        <table style="font-size: 16px;">
+            <colgroup>
+                <col span="1" style="width: 60%">
+                <col span="1" style="width: 40%">
+            </colgroup>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px" colspan="2"><b>Most Recent
+                    Work Address: </b>If you did work for this employer, but the work
+                    location is different, enter the address below.
+                </td>
+
+            </tr>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px" colspan="2"><input type="text"
+                                                                  ng-model="employer.lastWorkedLocation"
+                                                                  placeholder="Type a location"
+                                                                  typeahead="address for address in getLocation($viewValue)"
+                                                                  typeahead-loading="loadingLocations"
+                                                                  class="form-control">
+                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-left: 40px">&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px">Employer Telephone Number:</td>
+                <td valign="top" align="left"
+                    style="text-align: left; padding-left: 10px">(<input
+                        type="text" ng-model="employer.telephone1" maxlength="3" size="3"
+                        name="employer.telephone1" required/>) - <input type="text"
+                                                                        ng-model="employer.telephone2" maxlength="3"
+                                                                        size="3"
+                                                                        name="employer.telephone2" required/> - <input
+                        type="text"
+                        ng-model="employer.telephone3" maxlength="4" size="4"
+                        name="employer.telephone3" required/>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-left: 40px">&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px"><em>* </em>Last Wage:</td>
+                <td valign="top" align="left"
+                    style="text-align: left; padding-left: 10px">$<input
+                        type="text" ng-model="employer.lastWage" maxlength="7" size="7"
+                        name="lastWage" required/>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-left: 40px">&nbsp;</td>
+                <td></td>
+            </tr>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px" colspan="2"><em>*</em> Reason
+                    for separation from this employer:
+                </td>
+
+            </tr>
+            <tr style="padding-top: 20px">
+                <td style="padding-left: 40px" colspan="2">
+                    <ul
+                            style="list-style-type: none">
+
+                        <li>
+                            <div ng-form="employer[{{$index}}].layoff">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="LOFF"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Layoff: </b>
+                                    Some examples are: lack of work, temporary layoff, seasonal layoff, reduction in
+                                    force (RIF), your position was eliminated, your employer's business closed/plant
+                                    shutdown (temporarily or permanently).
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].quit">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="QUIT"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Quit: </b>
+                                    You decided to leave your employment. This includes work-related, personal, or
+                                    medical reasons, change in residence, found other job, etc.
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].discharge">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="DSCG"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Discharged/Dismissed/Terminated: </b>
+                                    Your employer decided to end your employment for reasons other than layoff.
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].suspension">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="SUSP"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Suspension: </b>
+                                    Your employer will temporarily not allow you to work. For example: Pending an
+                                    investigation or disciplinary action. (if for medical reasons, go to leave of
+                                    absence).
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].leave">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="LOAB"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Leave
+                                    of Absence: </b> You and your employer have an agreement that you will take some
+                                    time off work and you anticipate that you will return to work with this employer in
+                                    the future.
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].strike">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="STRK"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Strike/Lockout/Strike
+                                    related: </b> You are currently unemployed as a direct or indirect result of a
+                                    strike or lockout.
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].working">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="SWRK"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Still
+                                    working: </b> This includes part-time, on-call employment or reduced hours.
+                                </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div ng-form="employer[{{$index}}].sold">
+                                <label class="radio-inline"> <input type="radio"
+                                                                    ng-model="employer.reasonForSeparation"
+                                                                    value="SOLD"
+                                                                    name="employer.reasonForSeparation{{$index}}"/> <b>Business
+                                    Sold or Closed: </b> You either sold or closed a business that you had a controlling
+                                    ownership in.
+                                </label>
+
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+        </table>
+    </accordion-group>
+</accordion>
