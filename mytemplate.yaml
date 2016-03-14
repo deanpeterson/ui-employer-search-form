@@ -17,7 +17,7 @@ objects:
       build: logging-elasticsearch
     name: centos
   spec:
-    dockerImageRepository: library/centos:7
+    dockerImageRepository: library/centos
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -67,7 +67,7 @@ objects:
       build: logging-deployment
     name: origin
   spec:
-    dockerImageRepository: openshift/origin:latest
+    dockerImageRepository: openshift/origin
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -78,7 +78,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-deployment:latest
+        name: logging-deployment
     resources: {}
     source:
       contextDir: deployment
@@ -105,7 +105,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-elasticsearch:latest
+        name: logging-elasticsearch
     resources: {}
     source:
       contextDir: elasticsearch
@@ -132,7 +132,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-fluentd:latest
+        name: logging-fluentd
     resources: {}
     source:
       contextDir: fluentd
@@ -159,7 +159,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-kibana:latest
+        name: logging-kibana
     resources: {}
     source:
       contextDir: kibana
@@ -185,7 +185,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-curator:latest
+        name: logging-curator
     resources: {}
     source:
       contextDir: curator
@@ -211,7 +211,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: logging-auth-proxy:latest
+        name: logging-auth-proxy
     resources: {}
     source:
       git:
